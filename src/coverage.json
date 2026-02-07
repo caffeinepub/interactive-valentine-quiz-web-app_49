@@ -1,0 +1,52 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-07T12:10:48.035Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 2,
+    "implemented": 2,
+    "items": [
+      {
+        "id": "REQ-23",
+        "summary": "Update post-quiz navigation so the Valentine question flow is always shown for all quiz outcomes and is always the final interaction of the app:\n- If score == 5/5: show the date coupon (perfect results) screen first, then automatically continue to the Valentine question screen.\n- If score < 5/5: skip the date coupon and go directly to the Valentine question screen.\n- After entering the Valentine question flow, there must be no further automatic navigation to any other screen (the Valentine question flow is the final interaction).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/components/screens/ValentineFlowScreen.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-24",
+        "summary": "Adjust the perfect-score results screen so it can trigger an automatic transition to the Valentine question flow after it is displayed, while keeping existing perfect-score content intact (including the coupon and redeem interaction).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/screens/ResultsPerfectScreen.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/screens/ResultsPerfectScreen.tsx",
+          "frontend/src/App.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/App.tsx",
+    "frontend/src/components/screens/ResultsPerfectScreen.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

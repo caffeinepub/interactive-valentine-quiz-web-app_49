@@ -1,0 +1,283 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 11,
+  "summary": "Interactive Valentine Quiz Web App: a cute, romantic, mobile-first 5-question MCQ love quiz with pastel Valentine aesthetics, subtle animations/micro-interactions, results screens including a date coupon for 5/5, and a final 'Will you be my Valentine?' Yes/No interaction that appears for ALL quiz outcomes. No login required; shareable link; optional gentle music/sfx.",
+  "architectural_notes": [
+    "Single-page interactive quiz experience with screen-based flow: Welcome -> Quiz (5 steps) -> Result -> (optional) Valentine Trick -> Final celebration",
+    "No login; designed to be easily shareable via a single URL",
+    "Ensure the score<5 Valentine interaction flow is fully mobile-safe (no overflow/layout issues) during animated button resizing; use responsive constraints and smooth easing for size transitions.",
+    "If background music is enabled, it must pause or duck (lower volume) when the Spotify embed is playing; Spotify must never autoplay.",
+    "Update post-quiz flow so the Valentine question screen is the final interaction for ALL scores: score===5 shows the date coupon first, then automatically continues to the Valentine question screen; score<5 skips the coupon and routes directly to the Valentine question screen."
+  ],
+  "known_issues": [
+    "App currently ends prematurely after the date coupon result instead of continuing the intended post-quiz branching/Valentine trick flow.",
+    "Post-quiz routing must be updated so the Valentine question appears for all outcomes (including 5/5) and is the final interaction; 5/5 should show coupon then auto-continue to Valentine question."
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-create-a-cohesive-romantic-visual-theme-for-the-entire-app-pastel-valentine-palette-with-soft-pinks-beige-blush-red-cute-rounded-cards-subtle-gradients-playful-micro-interactions-smooth-transitions-and-apply-it-consistently-across-all-screens",
+      "title": "Create a cohesive, romantic visual theme for the entire app (pastel Valentine palette with soft pinks/beige/blush/red, cute rounded cards, subtle gradients, playful micro-interactions, smooth transitions) and apply it consistently across all screens.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-welcome-landing-screen-with-the-exact-title-subtitle-and-primary-cta-button-text-title-how-well-do-you-know-your-wife-subtitle-a-tiny-test-made-with-love-just-for-you-button-start-the-love-test",
+      "title": "Implement the Welcome/Landing screen with the exact title, subtitle, and primary CTA button text: Title: “How Well Do You Know Your Wife? 💖”, Subtitle: “A tiny test made with love just for you”, Button: “Start the Love Test →”.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-5-question-multiple-choice-quiz-flow-showing-one-question-at-a-time-in-a-card-ui-including-a-progress-indicator-e-g-question-1-5-and-a-visual-progress-bar",
+      "title": "Implement the 5-question multiple-choice quiz flow showing one question at a time in a card UI, including a progress indicator (e.g., “Question 1/5”) and a visual progress bar.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-hardcode-the-quiz-questions-options-and-correct-answers-exactly-as-specified-and-implement-scoring-1-point-for-each-correct-answer",
+      "title": "Hardcode the quiz questions, options, and correct answers exactly as specified, and implement scoring (1 point for each correct answer).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-playful-option-hover-tap-interactions-and-feedback-animations-a-fun-hover-animations-on-options-b-heart-confetti-animation-on-selecting-a-correct-answer-and-c-a-special-sparkle-animation-when-selecting-everything-for-q4",
+      "title": "Add playful option hover/tap interactions and feedback animations: (a) fun hover animations on options, (b) heart/confetti animation on selecting a correct answer, and (c) a special sparkle animation when selecting “Everything” for Q4.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-results-logic-and-screens-if-score-is-5-5-show-the-provided-perfect-score-text-show-a-cute-romantic-cartoony-meme-image-show-the-date-coupon-block-and-a-button-redeem-my-date-clicking-it-shows-your-wife-will-contact-you-shortly-for-booking-if-score-is-less-than-5-show-a-cute-funny-teasing-meme-image-show-the-provided-teasing-text-and-then-prompt-will-you-still-be-my-valentine-with-buttons-yes-and-no",
+      "title": "Implement the results logic and screens:\n- If score is 5/5, show the provided perfect-score text, show a cute romantic/cartoony meme image, show the “DATE COUPON” block, and a button “Redeem My Date 💌”. Clicking it shows: “Your Wife will contact you shortly for booking 😉”.\n- If score is less than 5, show a cute/funny teasing meme image, show the provided teasing text, and then prompt “Will you still be my Valentine? 💘” with buttons “Yes 💖” and “No 😈”.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-valentine-trick-interaction-on-the-score-5-flow-each-time-the-user-clicks-no-shrink-the-no-button-enlarge-the-yes-button-and-update-the-prompt-text-in-escalating-steps-first-are-you-sure-then-you-have-no-escape-continuing-until-yes-fills-most-of-the-screen-and-no-becomes-very-difficult-to-click-when-yes-is-clicked-show-yay-you-are-my-valentine-forever-with-confetti-hearts-romantic-celebration-animation",
+      "title": "Implement the “Valentine Trick” interaction on the score<5 flow: each time the user clicks “No 😈”, shrink the No button, enlarge the Yes button, and update the prompt text in escalating steps: first “Are you sure?? 🥺”, then “You have no escape 😌”, continuing until Yes fills most of the screen and No becomes very difficult to click. When “Yes 💖” is clicked, show: “YAY!!! You are my Valentine forever 💖🌹” with confetti + hearts + romantic celebration animation.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-floating-hearts-background-effect-across-the-app-subtle-non-distracting-and-ensure-it-performs-well-on-mobile-devices",
+      "title": "Add a floating-hearts background effect across the app (subtle, non-distracting) and ensure it performs well on mobile devices.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-optional-audio-gentle-background-music-and-subtle-sound-effects-controlled-by-a-clearly-visible-toggle-default-off-or-not-auto-playing-until-user-interaction",
+      "title": "Add optional audio: gentle background music and subtle sound effects, controlled by a clearly visible toggle (default off or not auto-playing until user interaction).",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-a-shareable-link-mechanism-that-works-without-login-e-g-a-copy-link-action-that-copies-the-current-url-and-gives-a-small-confirmation",
+      "title": "Provide a shareable link mechanism that works without login (e.g., a “Copy Link” action that copies the current URL and gives a small confirmation).",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-and-render-required-static-images-as-local-frontend-assets-not-fetched-from-backend-a-romantic-cute-meme-image-for-the-perfect-score-screen-a-teasing-but-cute-meme-image-for-the-non-perfect-screen-and-a-cute-date-coupon-style-illustration-card-graphic",
+      "title": "Add and render required static images as local frontend assets (not fetched from backend): a romantic/cute meme image for the perfect-score screen, a teasing-but-cute meme image for the non-perfect screen, and a cute date-coupon style illustration/card graphic.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-score-5-results-will-you-be-my-valentine-interaction-to-use-the-exact-user-provided-english-strings-including-capitalization-for-the-prompt-text-transitions-and-the-final-celebration-message",
+      "title": "Update the score<5 results \"will you be my valentine\" interaction to use the exact user-provided English strings (including capitalization) for the prompt text transitions and the final celebration message.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-restructure-the-score-5-results-flow-so-the-will-you-still-be-my-valentine-interaction-appears-only-after-the-teasing-results-content-teasing-heading-body-teasing-meme-and-not-before-keep-it-exclusive-to-score-5-5",
+      "title": "Restructure the score<5 results flow so the \"will you still be my valentine\" interaction appears only after the teasing results content (teasing heading/body + teasing meme) and not before; keep it exclusive to score < 5/5.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-mobile-safe-smooth-playful-easing-button-resize-behavior-for-the-valentine-trick-interaction-each-no-click-noticeably-enlarges-yes-and-shrinks-no-repeating-until-yes-fills-most-of-the-screen-and-no-becomes-tiny-hard-to-click-without-causing-overflow-or-layout-breakage-on-small-screens",
+      "title": "Implement mobile-safe, smooth, playful-easing button resize behavior for the Valentine Trick interaction: each “no 😈” click noticeably enlarges “yes 💖” and shrinks “no 😈”, repeating until “yes 💖” fills most of the screen and “no 😈” becomes tiny/hard to click, without causing overflow or layout breakage on small screens.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-when-yes-is-clicked-in-the-score-5-valentine-trick-flow-show-a-full-screen-celebration-state-and-include-a-sweet-reward-message-displayed-after-alongside-the-celebration-you-may-not-be-perfect-but-you-re-mine",
+      "title": "When “yes 💖” is clicked in the score<5 Valentine Trick flow, show a full-screen celebration state and include a sweet reward message displayed after/alongside the celebration: “you may not be perfect, but you’re mine 💖”.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-yes-click-triggers-confetti-floating-hearts-and-a-romantic-animation-during-the-full-screen-celebration-state-for-the-score-5-valentine-trick-flow",
+      "title": "Ensure the “yes 💖” click triggers confetti, floating hearts, and a romantic animation during the full-screen celebration state for the score<5 Valentine Trick flow.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-post-quiz-flow-branching-so-that-after-quiz-completion-the-app-routes-to-exactly-one-of-these-flows-based-on-score-without-ending-prematurely-1-if-score-5-5-keep-the-current-perfect-score-winning-screen-and-date-coupon-flow-including-the-redeem-interaction-after-redeem-show-the-message-text-exactly-your-girlfriend-will-contact-you-shortly-and-keep-the-user-on-the-results-ui-no-automatic-navigation-away-2-if-score-5-5-do-not-show-the-date-coupon-screen-and-do-not-show-the-teasing-continue-screen-instead-immediately-show-a-dedicated-valentine-prompt-screen-that-begins-with-the-text-exactly-will-you-still-be-my-valentine-and-two-buttons-exactly-yes-and-no",
+      "title": "Update the post-quiz flow branching so that after quiz completion the app routes to exactly one of these flows based on score, without ending prematurely: (1) If score == 5/5, keep the current perfect-score winning screen and date coupon flow, including the redeem interaction; after redeem, show the message text exactly: “your girlfriend will contact you shortly” and keep the user on the results UI (no automatic navigation away). (2) If score < 5/5, do not show the date coupon screen and do not show the teasing/\"Continue\" screen; instead, immediately show a dedicated Valentine prompt screen that begins with the text exactly: “will you still be my valentine? 💘” and two buttons exactly: “yes 💖” and “no 😈”.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-or-adjust-the-full-valentine-trick-interaction-for-the-score-5-5-branch-on-the-new-dedicated-valentine-prompt-screen-each-click-of-no-must-increase-the-size-of-the-yes-button-and-decrease-the-size-of-the-no-button-with-smooth-playful-easing-update-the-prompt-text-progressively-to-exactly-are-you-sure-then-you-have-no-escape-and-continue-repeating-escalating-until-the-yes-button-fills-most-of-the-screen-when-the-user-clicks-yes-show-a-final-full-screen-celebration-message-exactly-yay-you-are-my-valentine-forever-trigger-confetti-floating-hearts-and-romantic-animations-and-after-alongside-this-show-the-smaller-sweet-message-exactly-you-may-not-be-perfect-but-you-re-mine-ensure-the-interaction-and-resizing-remain-mobile-safe-no-overflow-layout-breakage",
+      "title": "Implement (or adjust) the full Valentine Trick interaction for the score < 5/5 branch on the new dedicated Valentine prompt screen: each click of “no 😈” must increase the size of the “yes 💖” button and decrease the size of the “no 😈” button with smooth, playful easing; update the prompt text progressively to exactly: “are you sure?? 🥺” then “you have no escape 😌”, and continue repeating/escalating until the “yes 💖” button fills most of the screen. When the user clicks “yes 💖”, show a final full-screen celebration message exactly: “YAY!!! you are my valentine forever 💖🌹”, trigger confetti, floating hearts, and romantic animations, and after/alongside this show the smaller sweet message exactly: “you may not be perfect, but you’re mine 💖”. Ensure the interaction and resizing remain mobile-safe (no overflow/layout breakage).",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-subtle-spotify-embed-for-the-song-there-is-a-light-that-never-goes-out-by-the-smiths-placed-either-on-the-welcome-screen-or-on-the-final-valentine-celebration-screen-with-a-small-caption-exactly-our-song-the-embed-must-not-autoplay-the-user-must-manually-click-play-keep-the-app-s-background-music-very-soft-and-when-spotify-playback-is-started-automatically-pause-the-background-music-or-lower-its-volume-while-spotify-is-playing-restore-the-background-music-volume-when-spotify-is-paused-stopped",
+      "title": "Add a subtle Spotify embed for the song “There Is a Light That Never Goes Out” by The Smiths, placed either on the Welcome screen or on the final Valentine celebration screen, with a small caption exactly: “our song 💖”. The embed must not autoplay; the user must manually click play. Keep the app’s background music very soft, and when Spotify playback is started, automatically pause the background music or lower its volume while Spotify is playing; restore the background music volume when Spotify is paused/stopped.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-refactor-the-post-quiz-navigation-so-the-date-coupon-screen-is-not-a-terminal-screen-for-all-users-and-the-app-ends-on-exactly-one-final-screen-per-score-path-a-if-quiz-score-5-route-to-the-date-coupon-perfect-results-screen-as-the-final-screen-b-if-quiz-score-5-completely-skip-the-date-coupon-screen-and-route-to-a-new-final-route-named-valentineflow-remove-any-logic-that-automatically-ends-navigates-away-after-showing-the-coupon-screen",
+      "title": "Refactor the post-quiz navigation so the date coupon screen is not a terminal screen for all users and the app ends on exactly one final screen per score path: (a) if quiz score === 5, route to the date coupon (perfect results) screen as the final screen; (b) if quiz score < 5, completely skip the date coupon screen and route to a new final route named “valentineFlow”. Remove any logic that automatically ends/navigates away after showing the coupon screen.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-valentineflow-route-for-score-5-only-as-a-two-screen-flow-with-mobile-first-layout-screen-1-content-and-interaction-text-exactly-will-you-still-be-my-valentine-two-buttons-exactly-yes-and-no-each-click-on-no-increases-the-size-of-the-yes-button-and-decreases-the-size-of-the-no-button-using-smooth-playful-easing-prompt-text-updates-progressively-to-exactly-are-you-sure-and-then-you-have-no-escape-and-continues-repeating-escalating-until-the-yes-button-dominates-most-of-the-screen-screen-2-after-yes-click-full-screen-celebration-state-text-exactly-yay-you-are-my-valentine-forever-confetti-and-floating-hearts-animation-final-message-exactly-you-may-not-be-perfect-but-you-re-mine",
+      "title": "Implement the “valentineFlow” route (for score < 5 only) as a two-screen flow with mobile-first layout.\n\nScreen 1 content and interaction:\n- Text exactly: “will you still be my valentine? 💘”\n- Two buttons exactly: “yes 💖” and “no 😈”\n- Each click on “no 😈” increases the size of the “yes 💖” button and decreases the size of the “no 😈” button, using smooth playful easing.\n- Prompt text updates progressively to exactly: “are you sure?? 🥺” and then “you have no escape 😌”, and continues repeating/escalating until the “yes 💖” button dominates most of the screen.\n\nScreen 2 (after “yes 💖” click):\n- Full-screen celebration state\n- Text exactly: “YAY!!! you are my valentine forever 💖🌹”\n- Confetti and floating hearts animation\n- Final message exactly: “you may not be perfect, but you’re mine 💖”",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-existing-non-perfect-results-implementation-so-it-no-longer-serves-as-the-non-perfect-post-quiz-terminal-screen-when-score-5-the-non-perfect-path-must-end-in-the-new-valentineflow-route-instead-ensure-any-older-non-perfect-results-tease-ui-is-not-shown-as-part-of-the-final-flow-unless-explicitly-required-by-valentineflow",
+      "title": "Update the existing non-perfect results implementation so it no longer serves as the non-perfect post-quiz terminal screen when score < 5; the non-perfect path must end in the new “valentineFlow” route instead. Ensure any older non-perfect ‘results/tease’ UI is not shown as part of the final flow unless explicitly required by valentineFlow.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-post-quiz-navigation-so-the-valentine-question-flow-is-always-shown-for-all-quiz-outcomes-and-is-always-the-final-interaction-of-the-app-if-score-5-5-show-the-date-coupon-perfect-results-screen-first-then-automatically-continue-to-the-valentine-question-screen-if-score-5-5-skip-the-date-coupon-and-go-directly-to-the-valentine-question-screen-after-entering-the-valentine-question-flow-there-must-be-no-further-automatic-navigation-to-any-other-screen-the-valentine-question-flow-is-the-final-interaction",
+      "title": "Update post-quiz navigation so the Valentine question flow is always shown for all quiz outcomes and is always the final interaction of the app:\n- If score == 5/5: show the date coupon (perfect results) screen first, then automatically continue to the Valentine question screen.\n- If score < 5/5: skip the date coupon and go directly to the Valentine question screen.\n- After entering the Valentine question flow, there must be no further automatic navigation to any other screen (the Valentine question flow is the final interaction).",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-adjust-the-perfect-score-results-screen-so-it-can-trigger-an-automatic-transition-to-the-valentine-question-flow-after-it-is-displayed-while-keeping-existing-perfect-score-content-intact-including-the-coupon-and-redeem-interaction",
+      "title": "Adjust the perfect-score results screen so it can trigger an automatic transition to the Valentine question flow after it is displayed, while keeping existing perfect-score content intact (including the coupon and redeem interaction).",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Build Welcome/Landing screen with title, subtitle, and “Start the Love Test →” button in romantic pastel UI",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Implement 5-question MCQ quiz flow (one question per screen) with progress indicator and option hover animations",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Add feedback animations: heart/confetti on correct answers; special sparkle animation when selecting “Everything” on Q4",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Implement scoring and results logic: perfect (5/5) win screen with date coupon + redeem button and follow-up message; non-perfect teasing screen with Valentine prompt",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Implement Valentine Trick interaction on “No” clicks (Yes grows, No shrinks, escalating messages) until Yes is chosen; then show final celebration (confetti/hearts/romantic animation)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Add romantic aesthetic system: soft pastel gradients, floating hearts background, rounded cards, smooth transitions, playful micro-interactions",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Add optional audio: gentle background music and subtle sound effects (toggleable)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Ensure mobile-first responsive design and fast/simple no-login experience; provide a shareable link mechanism",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Add post-“Yes 💖” sweet reward message on the score<5 Valentine interaction flow (e.g., “you may not be perfect, but you’re mine 💖”) shown alongside/after the full-screen celebration",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Add a subtle Spotify embed for “There Is a Light That Never Goes Out” (The Smiths) on the Welcome or final Valentine screen with caption “our song 💖”; do not autoplay; background music should auto-pause or lower volume while Spotify plays",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Update post-quiz routing so the “will you be my valentine? 💘” screen appears for ALL outcomes: if score==5/5 show date coupon first then automatically continue to the Valentine question screen; if score<5/5 skip coupon and go directly; ensure Valentine question is always the final interaction",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Interactive Valentine Quiz Web App",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,42 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-update-post-quiz-navigation-so-the-valentine-question-flow-is-always-shown-for-all-quiz-outcomes-and-is-always-the-final-interaction-of-the-app-if-score-5-5-show-the-date-coupon-perfect-results-screen-first-then-automatically-continue-to-the-valentine-question-screen-if-score-5-5-skip-the-date-coupon-and-go-directly-to-the-valentine-question-screen-after-entering-the-valentine-question-flow-there-must-be-no-further-automatic-navigation-to-any-other-screen-the-valentine-question-flow-is-the-final-interaction",
+      "featureTitle": "Update post-quiz navigation so the Valentine question flow is always shown for all quiz outcomes and is always the final interaction of the app:\n- If score == 5/5: show the date coupon (perfect results) screen first, then automatically continue to the Valentine question screen.\n- If score < 5/5: skip the date coupon and go directly to the Valentine question screen.\n- After entering the Valentine question flow, there must be no further automatic navigation to any other screen (the Valentine question flow is the final interaction).",
+      "files": [
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-23"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-adjust-the-perfect-score-results-screen-so-it-can-trigger-an-automatic-transition-to-the-valentine-question-flow-after-it-is-displayed-while-keeping-existing-perfect-score-content-intact-including-the-coupon-and-redeem-interaction",
+      "featureTitle": "Adjust the perfect-score results screen so it can trigger an automatic transition to the Valentine question flow after it is displayed, while keeping existing perfect-score content intact (including the coupon and redeem interaction).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/screens/ResultsPerfectScreen.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-24"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

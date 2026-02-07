@@ -1,0 +1,49 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Make Valentine flow the final step for all quiz outcomes with auto-continue after 5/5 coupon",
+  "requirements": [
+    {
+      "id": "REQ-23",
+      "summary": "Ensure Valentine question flow is shown for all quiz outcomes and is the final interaction, with 5/5 showing coupon first then auto-continuing",
+      "acceptanceCriteria": [
+        "Completing the quiz with score == 5 first shows the date coupon/perfect results UI, then transitions to the Valentine question screen without requiring the user to click a manual 'Continue' control.",
+        "Completing the quiz with score < 5 routes directly to the Valentine question screen and does not show the date coupon screen.",
+        "Once the Valentine question flow is shown, it remains the last interactive flow; the app does not auto-navigate away to another screen afterward (only explicit user actions like restart/retake are allowed)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Update post-quiz screen orchestration so <5 routes directly to ValentineFlowScreen, while 5/5 routes to ResultsPerfectScreen and then auto-transitions to ValentineFlowScreen via a new callback prop (no manual continue button). Also ensure there is no additional automatic navigation after entering ValentineFlowScreen. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/screens/ValentineFlowScreen.tsx",
+          "operation": "modify",
+          "description": "Audit/adjust ValentineFlowScreen to ensure it does not trigger any automatic navigation away after it is shown (keep only explicit user actions like retake). No copy/interaction mechanic changes beyond what is necessary to keep it final. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-24",
+      "summary": "Add automatic transition behavior to the perfect-score results screen while preserving existing coupon/redeem UI",
+      "acceptanceCriteria": [
+        "The perfect-score screen still renders its existing 5/5 content (including coupon UI and redeem interaction) before the app transitions to the Valentine question screen.",
+        "The transition from the perfect-score screen to the Valentine question screen occurs automatically (no additional required user click beyond the existing redeem behavior).",
+        "The Valentine question screen shown after the 5/5 path is the same Valentine prompt/interaction used for the <5 path."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/screens/ResultsPerfectScreen.tsx",
+          "operation": "modify",
+          "description": "Introduce an auto-continue mechanism (e.g., a timer after initial render and/or shortly after redeem feedback) and a new onContinue callback prop invoked to transition to ValentineFlowScreen. Preserve all existing perfect-score content and interactions, continuing to use existing shadcn-ui Button/Card components as-is. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the new ResultsPerfectScreen onContinue prop to navigate to ValentineFlowScreen, ensuring the same ValentineFlowScreen instance/flow is used for both 5/5 and <5 paths. Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

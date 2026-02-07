@@ -1,0 +1,24 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-07T12:10:48.032Z",
+  "summary": "Post-quiz routing was updated so score==5 goes to the perfect results screen and score<5 goes directly to the Valentine flow. The perfect results screen now auto-transitions to the Valentine flow after the redeem message is shown. However, the diff does not provide evidence that the Valentine flow is guaranteed to have no further automatic navigation away (final-step guarantee).",
+  "missing_requirements": [
+    {
+      "id": "REQ-23",
+      "requirement": "Once the Valentine question flow is shown, it remains the last interactive flow; the app does not auto-navigate away to another screen afterward (only explicit user actions like restart/retake are allowed).",
+      "reason": "The diff summary does not include any changes or evidence from the Valentine flow implementation (e.g., frontend/src/components/screens/ValentineFlowScreen.tsx) to confirm it does not automatically navigate to another screen after it starts.",
+      "evidence": [
+        "frontend/src/App.tsx (shows navigation into valentine-flow but not what ValentineFlowScreen does afterward)"
+      ]
+    }
+  ],
+  "hallucinated_features": [],
+  "confidence": 0.68,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/App.tsx",
+    "frontend/src/components/screens/ResultsPerfectScreen.tsx",
+    "project_state.json"
+  ]
+}

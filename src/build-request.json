@@ -1,0 +1,56 @@
+{
+  "kind": "build_request",
+  "title": "Make the Valentine question screen the final step for all quiz outcomes (auto-continue after 5/5 coupon)",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-23",
+      "text": "Update post-quiz navigation so the Valentine question flow is always shown for all quiz outcomes and is always the final interaction of the app:\n- If score == 5/5: show the date coupon (perfect results) screen first, then automatically continue to the Valentine question screen.\n- If score < 5/5: skip the date coupon and go directly to the Valentine question screen.\n- After entering the Valentine question flow, there must be no further automatic navigation to any other screen (the Valentine question flow is the final interaction).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "update the flow so that the “will you be my valentine?” screen appears for ALL quiz outcomes, including 5/5.\nif score == 5/5:\nshow the date coupon first\nthen automatically continue to the valentine question screen\nif score < 5/5:\nskip the coupon\ndirectly show the valentine question screen\nensure the valentine question is always the final interaction of the app."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Completing the quiz with score == 5 first shows the date coupon/perfect results UI, then transitions to the Valentine question screen without requiring the user to click a manual 'Continue' control.",
+        "Completing the quiz with score < 5 routes directly to the Valentine question screen and does not show the date coupon screen.",
+        "Once the Valentine question flow is shown, it remains the last interactive flow; the app does not auto-navigate away to another screen afterward (only explicit user actions like restart/retake are allowed)."
+      ]
+    },
+    {
+      "id": "REQ-24",
+      "text": "Adjust the perfect-score results screen so it can trigger an automatic transition to the Valentine question flow after it is displayed, while keeping existing perfect-score content intact (including the coupon and redeem interaction).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "if score == 5/5:\nshow the date coupon first\nthen automatically continue to the valentine question screen"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The perfect-score screen still renders its existing 5/5 content (including coupon UI and redeem interaction) before the app transitions to the Valentine question screen.",
+        "The transition from the perfect-score screen to the Valentine question screen occurs automatically (no additional required user click beyond the existing redeem behavior).",
+        "The Valentine question screen shown after the 5/5 path is the same Valentine prompt/interaction used for the <5 path."
+      ]
+    }
+  ],
+  "constraints": [
+    "Frontend must not modify files under frontend/src/components/ui or any paths listed as immutable in SYSTEM_CONTEXT.",
+    "Do not add new backend services or databases; keep the app as a frontend-driven flow (backend/main.mo remains unchanged unless strictly necessary)."
+  ],
+  "nonGoals": [
+    "Changing quiz questions, scoring rules, or option animations.",
+    "Changing the Valentine question/celebration copy or interaction mechanics beyond what is required to make the flow appear for all outcomes and be final.",
+    "Adding new authentication requirements or gating any screens behind login."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
